@@ -1,0 +1,25 @@
+<ion-content>
+    <ion-item-group>
+
+      <ion-item-divider light>Login</ion-item-divider>
+      
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input required [(ngModel)]="email" type="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input required [(ngModel)]="password" type="password"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <button block [disabled]="!email || !password" (click)="login(email, password)">Entrar</button>
+        </ion-item>
+        
+        <ion-item>
+            <button block (click)="openRegister()">Cadastrar</button>
+        </ion-item>
+
+    </ion-item-group>
+</ion-content>

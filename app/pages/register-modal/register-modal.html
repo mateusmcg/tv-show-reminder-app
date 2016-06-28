@@ -1,0 +1,26 @@
+<ion-toolbar primary>
+  <ion-title>Cadastre-se</ion-title>
+
+  <ion-buttons end>
+    <button royal (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-buttons>
+
+</ion-toolbar>
+
+<ion-content>
+    <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input required [(ngModel)]="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input required [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <button [disabled]="!email || !password" block secondary (click)="register(email, password)">Cadastrar</button>
+    </ion-item>
+</ion-content>
