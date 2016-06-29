@@ -14,11 +14,13 @@
         </ion-item>
         
         <ion-item>
-            <button block [disabled]="!email || !password" (click)="login(email, password)">Entrar</button>
+            <button block light [disabled]="!email || !password" (click)="login(email, password)">Entrar</button>
         </ion-item>
         
         <ion-item>
-            <button block (click)="openRegister()">Cadastrar</button>
+            <button block secondary (click)="openRegister()">Cadastrar</button>
+            <button block danger (click)="loginGoogle(email, password)">Google</button>
+            <button block (click)="loginFacebook(email, password)">Facebook</button>
         </ion-item>
 
     </ion-item-group>

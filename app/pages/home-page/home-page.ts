@@ -1,15 +1,35 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {ScientificFactsPage} from '../scientific-facts-page/scientific-facts-page';
+import {MenuController, NavController} from 'ionic-angular';
+import {MyShowsPage} from '../myshows-page/myshows-page';
+import {LoginPage} from '../login-page/login-page';
+import {AngularFire} from 'angularfire2';
 
 @Component({
   templateUrl: 'build/pages/home-page/home-page.html'
 })
 export class HomePage {
-  constructor(private _navController: NavController) {
+
+  private rootPage = MyShowsPage;
+  private authData: any;
+
+  constructor(private _navController: NavController,
+              private menu: MenuController,
+              private angularFire: AngularFire) {
+        
+        this.authData = this.angularFire.auth.getAuth().auth;
   }
 
-  goToFactsPage(){
-    this._navController.push(ScientificFactsPage);
+  openPage(page) {
+    // Reset the nav controller to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.rootPage = page;
+
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+  }
+
+  signOut(){
+    this.angularFire.auth.logout();
+    this._navController.popToRoot();
   }
 }
