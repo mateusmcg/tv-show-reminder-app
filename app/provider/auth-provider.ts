@@ -8,7 +8,7 @@ export class AuthProvider {
   private isAuthenticated: boolean;
   private uid: string;
   private provider: number;
-  private shows: any[];
+  private shows;
 
   constructor() {
   }

@@ -118,18 +118,23 @@ export class LoginPage {
       
       var $this = this;
       this.angularFire.auth.login(user, authConfig).then(function(result){
-          let myShows = $this.angularFire.database.list('/' + result.uid + '/shows')
-
-          let authData = {
-              uid: result.uid,
-              provider: result.provider,
-              email: result.auth.email,
-              displayName: result.auth.displayName,
-              shows: myShows
-          }
+          let myShows:any;
+          $this.angularFire.database.list('/' + result.uid + '/shows')
+                    .subscribe(data => {
+                        let authData = {
+                            uid: result.uid,
+                            provider: result.provider,
+                            email: result.auth.email,
+                            displayName: result.auth.displayName,
+                            shows: data
+                        }
           
-          $this.authProvider.setAuth(authData);
-          $this._navController.push(HomePage);
+                        $this.authProvider.setAuth(authData);
+                        $this._navController.push(HomePage);
+                    },
+                    error => console.error('erro', error),
+                    () => console.debug('cabou'))
+
       }, function(error){
           loading.dismiss();
           console.error('Email ou senha inválidos', error);
