@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Platform, ionicBootstrap} from 'ionic-angular';
+import {Platform, ionicBootstrap, NavController} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LoginPage} from './pages/login-page/login-page';
 import {HomePage} from './pages/home-page/home-page';
@@ -29,15 +29,32 @@ export class MyApp {
   private rootPage:any;
 
   constructor(private platform:Platform,
-              private angularFire: AngularFire) {
+              private angularFire: AngularFire,
+              private authProvider: AuthProvider) {
     
-    let authData = this.angularFire.auth.getAuth();
+    this.angularFire.auth.subscribe(
+      result => {
+        if(result){
+          let authData = {
+              uid: result.uid,
+              provider: result.provider,
+              email: result.auth.email,
+              displayName: result.auth.displayName
+          }
 
-    if(authData){
-      this.rootPage = HomePage;
-    } else{
-      this.rootPage = LoginPage;
-    }
+          this.authProvider.setAuth(authData);
+          this.rootPage = HomePage;
+        } else{
+          this.rootPage = LoginPage;
+        }
+      },
+      error => {
+        console.error('Erro ao logar', error);
+      },
+      ()=> {
+        console.log('Logado com sucesso');
+      }
+    )
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

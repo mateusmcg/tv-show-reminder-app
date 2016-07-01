@@ -130,7 +130,6 @@ export class LoginPage {
                         }
           
                         $this.authProvider.setAuth(authData);
-                        $this._navController.push(HomePage);
                     },
                     error => console.error('erro', error),
                     () => console.debug('cabou'))

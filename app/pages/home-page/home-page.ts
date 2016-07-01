@@ -35,6 +35,5 @@ export class HomePage {
 
   signOut(){
     this.angularFire.auth.logout();
-    this._navController.popToRoot();
   }
 }
