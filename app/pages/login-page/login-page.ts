@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Modal, NavController, Alert, Loading} from 'ionic-angular';
 import {RegisterModal} from '../register-modal/register-modal';
 import {HomePage} from '../home-page/home-page';
+import {AuthProvider} from '../../provider/auth-provider';
 
 import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
 
@@ -13,7 +14,8 @@ export class LoginPage {
   private progress: boolean = false;
     
   constructor(private _navController: NavController,
-              private angularFire: AngularFire) {
+              private angularFire: AngularFire,
+              private authProvider: AuthProvider) {
   }
   
   openRegister(){
@@ -44,16 +46,17 @@ export class LoginPage {
       this.angularFire.auth.login(user, authConfig).then(function(teste){
           $this._navController.push(HomePage);
       }, function(error){
+          alert(error);
           loading.dismiss();
           console.error('Email ou senha inválidos', error);
           
-          let alert = Alert.create({
+          let alertIonic = Alert.create({
             title: 'Oops :(',
             subTitle: 'Email ou senha inválidos.',
             buttons: ['OK']
           });
         
-          $this._navController.present(alert);
+          $this._navController.present(alertIonic);
       });
   }
 
@@ -80,16 +83,17 @@ export class LoginPage {
       this.angularFire.auth.login(user, authConfig).then(function(teste){
           $this._navController.push(HomePage);
       }, function(error){
+          alert(error);
           loading.dismiss();
           console.error('Email ou senha inválidos', error);
           
-          let alert = Alert.create({
+          let alertIonic = Alert.create({
             title: 'Oops :(',
             subTitle: 'Email ou senha inválidos.',
             buttons: ['OK']
           });
         
-          $this._navController.present(alert);
+          $this._navController.present(alertIonic);
       });
   }
   
@@ -113,7 +117,18 @@ export class LoginPage {
       }
       
       var $this = this;
-      this.angularFire.auth.login(user, authConfig).then(function(teste){
+      this.angularFire.auth.login(user, authConfig).then(function(result){
+          let myShows = $this.angularFire.database.list('/' + result.uid + '/shows')
+
+          let authData = {
+              uid: result.uid,
+              provider: result.provider,
+              email: result.auth.email,
+              displayName: result.auth.displayName,
+              shows: myShows
+          }
+          
+          $this.authProvider.setAuth(authData);
           $this._navController.push(HomePage);
       }, function(error){
           loading.dismiss();

@@ -1,0 +1,24 @@
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name='menu'></ion-icon>
+  </button>
+  <ion-title>
+    Buscar Séries
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding>
+    <ion-searchbar (ionInput)="getShows($event)" placeholder="Buscar..."></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let show of shows | async">
+            <div item-left>
+                <img width="80" height="110" src="{{show.show.images | showImage}}">
+            </div>
+            <h2>{{show.show.title}}</h2>
+            <h3>{{show.show.year}} • {{show.score | number}} <ion-icon name="star"></ion-icon></h3>
+            <button clear item-right (click)="addShow(show)">
+                <ion-icon name="add-circle"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,11 +1,23 @@
 <ion-menu [content]="content">
   <ion-toolbar>
-    <ion-title>Pages</ion-title>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
   <ion-content>
     <ion-list>
       <button ion-item>
         {{authData.email}}
+      </button>
+      <button ion-item (click)="openPage(myShowsPage)">
+        <ion-icon name="film"></ion-icon>
+        Minhas Séries
+      </button>
+      <button ion-item (click)="openPage(searchPage)">
+        <ion-icon name="search"></ion-icon>
+        Buscar
+      </button>
+      <button ion-item (click)="openPage(configPage)">
+        <ion-icon name="cog"></ion-icon>
+        Configurações
       </button>
       <button ion-item (click)="signOut()">
         <ion-icon name="log-out"></ion-icon>

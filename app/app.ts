@@ -3,6 +3,9 @@ import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LoginPage} from './pages/login-page/login-page';
 import {HomePage} from './pages/home-page/home-page';
+import {HTTP_PROVIDERS} from '@angular/http';
+import {TvShowProvider} from './provider/tvshow-provider';
+import {AuthProvider} from './provider/auth-provider';
 
 import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
 
@@ -10,6 +13,9 @@ import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   providers: [
     FIREBASE_PROVIDERS,
+    HTTP_PROVIDERS,
+    TvShowProvider,
+    AuthProvider,
     defaultFirebase({
         apiKey: "AIzaSyBOsSdHwjQlylN-S0nuvcsdxQ2ZPIzzZqY",
         authDomain: "tv-show-reminder-bc893.firebaseapp.com",

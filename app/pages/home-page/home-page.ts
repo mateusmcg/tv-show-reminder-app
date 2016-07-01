@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {MenuController, NavController} from 'ionic-angular';
 import {MyShowsPage} from '../myshows-page/myshows-page';
+import {SearchPage} from '../search-page/search-page';
 import {LoginPage} from '../login-page/login-page';
+import {ConfigPage} from '../config-page/config-page';
 import {AngularFire} from 'angularfire2';
 
 @Component({
@@ -10,6 +12,9 @@ import {AngularFire} from 'angularfire2';
 export class HomePage {
 
   private rootPage = MyShowsPage;
+  private myShowsPage = MyShowsPage;
+  private searchPage = SearchPage;
+  private configPage = ConfigPage;
   private authData: any;
 
   constructor(private _navController: NavController,
