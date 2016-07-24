@@ -17,50 +17,55 @@ import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
     TvShowProvider,
     AuthProvider,
     defaultFirebase({
-        apiKey: "AIzaSyBOsSdHwjQlylN-S0nuvcsdxQ2ZPIzzZqY",
-        authDomain: "tv-show-reminder-bc893.firebaseapp.com",
-        databaseURL: "https://tv-show-reminder-bc893.firebaseio.com",
-        storageBucket: "tv-show-reminder-bc893.appspot.com",
+      apiKey: "AIzaSyBOsSdHwjQlylN-S0nuvcsdxQ2ZPIzzZqY",
+      authDomain: "tv-show-reminder-bc893.firebaseapp.com",
+      databaseURL: "https://tv-show-reminder-bc893.firebaseio.com",
+      storageBucket: "tv-show-reminder-bc893.appspot.com",
     })
   ],
 })
 export class MyApp {
 
-  private rootPage:any;
+  private rootPage: any;
 
-  constructor(private platform:Platform,
-              private angularFire: AngularFire,
-              private authProvider: AuthProvider) {
-    
-    this.angularFire.auth.subscribe(
-      result => {
-        if(result){
-          let authData = {
+  constructor(private platform: Platform,
+    private angularFire: AngularFire,
+    private authProvider: AuthProvider) {
+    try {
+      this.angularFire.auth.subscribe(
+        result => {
+          if (result) {
+            let authData = {
               uid: result.uid,
               provider: result.provider,
               email: result.auth.email,
               displayName: result.auth.displayName
+            }
+
+            this.authProvider.setAuth(authData);
+            this.rootPage = HomePage;
+          } else {
+            this.rootPage = LoginPage;
           }
-
-          this.authProvider.setAuth(authData);
-          this.rootPage = HomePage;
-        } else{
-          this.rootPage = LoginPage;
+        },
+        error => {
+          console.error('Erro ao logar', error);
+        },
+        () => {
+          console.log('Logado com sucesso');
         }
-      },
-      error => {
-        console.error('Erro ao logar', error);
-      },
-      ()=> {
-        console.log('Logado com sucesso');
-      }
-    )
+      )
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-    });
+      platform.ready().then(() => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        StatusBar.styleDefault();
+      });
+    } catch (error) {
+      alert(error);
+    }
+
+
   }
 }
 

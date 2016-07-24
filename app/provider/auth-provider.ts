@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {AngularFire} from 'angularfire2';
 
 @Injectable()
 export class AuthProvider {
@@ -10,7 +11,7 @@ export class AuthProvider {
   private provider: number;
   private shows;
 
-  constructor() {
+  constructor(private angularFire : AngularFire) {
   }
 
   setAuth(authData: any){
@@ -31,5 +32,9 @@ export class AuthProvider {
           provider: this.provider,
           shows: this.shows
       }
+  }
+
+  getUserShows(){
+      return this.angularFire.database.list('/' + this.uid + '/shows');
   }
 }

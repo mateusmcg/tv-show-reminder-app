@@ -24,12 +24,6 @@ export class LoginPage {
   }
 
   loginGoogle(email, password){
-      let loading = Loading.create({
-        content: "Entrando...",
-        dismissOnPageChange: true
-      });  
-      this._navController.present(loading);
-
        let authConfig = {
           method: AuthMethods.Popup,
           provider: AuthProviders.Google,
@@ -47,25 +41,11 @@ export class LoginPage {
           $this._navController.push(HomePage);
       }, function(error){
           alert(error);
-          loading.dismiss();
           console.error('Email ou senha inválidos', error);
-          
-          let alertIonic = Alert.create({
-            title: 'Oops :(',
-            subTitle: 'Email ou senha inválidos.',
-            buttons: ['OK']
-          });
-        
-          $this._navController.present(alertIonic);
       });
   }
 
   loginFacebook(email, password){
-      let loading = Loading.create({
-        content: "Entrando...",
-        dismissOnPageChange: true
-      });  
-      this._navController.present(loading);
 
        let authConfig = {
           method: AuthMethods.Popup,
@@ -84,16 +64,7 @@ export class LoginPage {
           $this._navController.push(HomePage);
       }, function(error){
           alert(error);
-          loading.dismiss();
           console.error('Email ou senha inválidos', error);
-          
-          let alertIonic = Alert.create({
-            title: 'Oops :(',
-            subTitle: 'Email ou senha inválidos.',
-            buttons: ['OK']
-          });
-        
-          $this._navController.present(alertIonic);
       });
   }
   
