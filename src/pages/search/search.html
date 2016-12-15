@@ -14,10 +14,17 @@
 
 
 <ion-content>
-	<ion-searchbar (ionInput)="getItems($event)" placeholder="Search for your favorite TV shows"></ion-searchbar>
+	<ion-searchbar (ionInput)="searchShows($event)" placeholder="Search for your favorite TV shows"></ion-searchbar>
 	<ion-list>
-		<ion-item *ngFor="let item of items">
-			{{ item }}
-		</ion-item>
+		<button ion-item *ngFor="let show of shows">
+			<ion-thumbnail item-left>
+				<img src="{{show.show.image?.medium}}" width="100%">
+			</ion-thumbnail>
+				<h2>{{ show.show.name }}</h2>
+				<p>
+					<ion-icon name="star" *ngIf="show.show.rating.average"></ion-icon> 
+					{{show.show.rating.average}} | {{show.show.premiered | date}} | {{show.show.status}}
+				</p>
+		</button>
 	</ion-list>
 </ion-content>

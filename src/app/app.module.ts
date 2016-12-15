@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { MyShowsPage } from '../pages/my-shows/my-shows';
@@ -8,6 +9,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TvShowsPage } from '../pages/tv-shows/tv-shows';
 
 import { Database } from '../providers/database';
+import { MazeTvApi } from '../providers/maze-tv-api';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { Database } from '../providers/database';
     TvShowsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,7 +38,8 @@ import { Database } from '../providers/database';
       provide: ErrorHandler,
       useClass: IonicErrorHandler
     },
-    Database
+    Database,
+    MazeTvApi
   ]
 })
 export class AppModule { }
