@@ -16,7 +16,7 @@
 <ion-content>
 	<ion-searchbar (ionInput)="searchShows($event)" placeholder="Search for your favorite TV shows"></ion-searchbar>
 	<ion-list>
-		<button ion-item *ngFor="let show of shows">
+		<button ion-item *ngFor="let show of shows" (click)="getSeasons(show)">
 			<ion-thumbnail item-left>
 				<img src="{{show.show.image?.medium}}" width="100%">
 			</ion-thumbnail>

@@ -22,4 +22,24 @@ export class MazeTvApi {
     return this.http.get(this.baseUrl + searchUri);
   }
 
+  getShowSeasons(showId) {
+    let uri = "/shows/" + showId + "/seasons";
+    return this.http.get(this.baseUrl + uri);
+  }
+
+  getShowEpisodes(showId, includeSpecials = true) {
+    let uri = "/shows/" + showId + "/episodes";
+    return this.http.get(this.baseUrl + uri);
+  }
+
+  getEpisodesBySeason(showId, seasonNumber) {
+    let uri = "/shows/" + showId + "/episodes?season=" + seasonNumber;
+    return this.http.get(this.baseUrl + uri);
+  }
+
+  getEpisodeFullInfo(showId, seasonNumber, episodeNumber) {
+    let uri = "/shows/" + showId + "/episodebynumber?season=" + seasonNumber + "&number=" + episodeNumber;
+    return this.http.get(this.baseUrl + uri);
+  }
+
 }

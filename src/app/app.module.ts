@@ -7,6 +7,8 @@ import { ConfigPage } from '../pages/config/config';
 import { SearchPage } from '../pages/search/search';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TvShowsPage } from '../pages/tv-shows/tv-shows';
+import { SeasonListPage } from '../pages/season-list/season-list';
+import { EpisodeListPage } from '../pages/episode-list/episode-list';
 
 import { Database } from '../providers/database';
 import { MazeTvApi } from '../providers/maze-tv-api';
@@ -18,7 +20,9 @@ import { MazeTvApi } from '../providers/maze-tv-api';
     SearchPage,
     ConfigPage,
     TabsPage,
-    TvShowsPage
+    TvShowsPage,
+    SeasonListPage,
+    EpisodeListPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -31,7 +35,9 @@ import { MazeTvApi } from '../providers/maze-tv-api';
     SearchPage,
     ConfigPage,
     TabsPage,
-    TvShowsPage
+    TvShowsPage,
+    SeasonListPage,
+    EpisodeListPage
   ],
   providers: [
     {

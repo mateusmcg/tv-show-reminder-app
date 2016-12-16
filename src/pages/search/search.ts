@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 
 import { MazeTvApi } from '../../providers/maze-tv-api';
 
+import { SeasonListPage } from '../season-list/season-list';
+
 /*
   Generated class for the Search page.
 
@@ -39,6 +41,10 @@ export class SearchPage {
       //   return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       // })
     }
+  }
+
+  getSeasons(selectedShow) {
+    this.navCtrl.push(SeasonListPage, selectedShow);
   }
 
 }
