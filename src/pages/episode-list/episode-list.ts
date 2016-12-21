@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { MazeTvApi } from '../../providers/maze-tv-api';
 
+import { SocialSharing } from 'ionic-native';
+
 /*
   Generated class for the EpisodeList page.
 
@@ -29,14 +31,22 @@ export class EpisodeListPage {
     console.log('Hello EpisodeListPage Page');
   }
 
-  loadEpisodes(){
-    this.mazeTvApi.getShowEpisodes(this.selectedShow.show.id, true).subscribe(ob =>{
+  loadEpisodes() {
+    this.mazeTvApi.getShowEpisodes(this.selectedShow.show.id, true).subscribe(ob => {
       this.episodes = ob.json().filter(item => {
         return item.season == this.selectedSeason.number;
       });
-    }, error =>{
+    }, error => {
       console.debug(error);
     })
+  }
+
+  share(episode) {
+    SocialSharing.share(episode.summary, episode.season + 'x' + episode.number + ' - ' + episode.name, episode.image ? episode.image.medium : null, episode.url).then(() => {
+      console.log('Compartilhado !');
+    }).catch(() => {
+      alert('Its NOT possible !');
+    });
   }
 
 }

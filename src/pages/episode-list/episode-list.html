@@ -26,19 +26,7 @@
 
 		<ion-row no-padding>
 			<ion-col>
-				<button ion-button clear small color="danger" icon-left>
-          <ion-icon name='star'></ion-icon>
-          Favorite
-        </button>
-			</ion-col>
-			<ion-col text-center>
-				<button ion-button clear small color="danger" icon-left>
-          <ion-icon name='musical-notes'></ion-icon>
-          Listen
-        </button>
-			</ion-col>
-			<ion-col text-right>
-				<button ion-button clear small color="danger" icon-left>
+				<button ion-button clear small color="danger" icon-left full (click)="share(episode)">
           <ion-icon name='share-alt'></ion-icon>
           Share
         </button>
