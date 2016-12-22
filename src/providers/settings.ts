@@ -16,7 +16,7 @@ export class Settings {
 
   constructor(public http: Http) {
     console.log('Hello Settings Provider');
-    this.theme = new BehaviorSubject('blue-theme');
+    this.theme = new BehaviorSubject('default-theme');
   }
 
 

@@ -13,8 +13,8 @@ import 'rxjs/add/operator/map';
 declare var firebase;
 @Injectable()
 export class Database {
-  private _todos$: any;
   private _db: any;
+  private _users: any;
   private _usersRef: any;
 
   constructor(public http: Http) {
@@ -22,22 +22,22 @@ export class Database {
     this._db = firebase.database().ref('/'); // Get a firebase reference to the root 
     this._usersRef = firebase.database().ref('users'); // Get a firebase reference to the todos
     this._usersRef.on('child_added', this.handleData, this); // ***ADD THIS LINE***
-    this._todos$ = new ReplaySubject();
+    this._users = new ReplaySubject();
   }
 
   get todos() {
-    return this._todos$;
+    return this._users;
   }
 
-  save(todo) {
-    return this._usersRef.push(todo).key;
+  saveUserInfo(userInfo, userId) {
+    return this._usersRef.child(userId).set(userInfo);
   }
 
   handleData(snap) {
     console.debug(snap);
     try {
       // Tell our observer we have new data 
-      this._todos$.next(snap.val());
+      this._users.next(snap.val());
     }
     catch (error) {
       console.log('catching', error);

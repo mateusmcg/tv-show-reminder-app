@@ -15,29 +15,29 @@ class Todo { public title: string; public completed: boolean; constructor() { th
   templateUrl: 'tv-shows.html'
 })
 export class TvShowsPage {
-  todo: Todo;
+  //todo: Todo;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public _db: Database) {
-    this.todo = new Todo();
+//    this.todo = new Todo();
   }
 
   save() {
-    var key = this._db.save(this.todo);
-    if (key) {
-      let toast = this.toastCtrl.create({
-        message: 'Todo Saved',
-        duration: 500
-      });
+    // var key = this._db.save(this.todo);
+    // if (key) {
+    //   let toast = this.toastCtrl.create({
+    //     message: 'Todo Saved',
+    //     duration: 500
+    //   });
 
-      toast.onDidDismiss(() => {
-        this.navCtrl.pop();
-        console.log('Dismissed toast');
-      });
+    //   toast.onDidDismiss(() => {
+    //     this.navCtrl.pop();
+    //     console.log('Dismissed toast');
+    //   });
 
-      toast.present();
+    //   toast.present();
 
-      console.log('saved', key);
-    }
+    //   console.log('saved', key);
+    // }
   }
 
   ionViewDidLoad() {

@@ -12,6 +12,7 @@ import { TvShowsPage } from '../pages/tv-shows/tv-shows';
 import { SeasonListPage } from '../pages/season-list/season-list';
 import { EpisodeListPage } from '../pages/episode-list/episode-list';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 
 // Providers
 import { Database } from '../providers/database';
@@ -28,7 +29,8 @@ import { Settings } from '../providers/settings';
     TvShowsPage,
     SeasonListPage,
     EpisodeListPage,
-    LoginPage
+    LoginPage,
+    SignupPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -44,7 +46,8 @@ import { Settings } from '../providers/settings';
     TvShowsPage,
     SeasonListPage,
     EpisodeListPage,
-    LoginPage
+    LoginPage,
+    SignupPage
   ],
   providers: [
     {
