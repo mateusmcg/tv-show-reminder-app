@@ -33,6 +33,10 @@ export class Database {
     return this._usersRef.child(userId).set(userInfo);
   }
 
+  getUserData(userId){
+    return this._usersRef.child(userId).get();
+  }
+
   handleData(snap) {
     console.debug(snap);
     try {
