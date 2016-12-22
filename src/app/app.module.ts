@@ -11,12 +11,12 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TvShowsPage } from '../pages/tv-shows/tv-shows';
 import { SeasonListPage } from '../pages/season-list/season-list';
 import { EpisodeListPage } from '../pages/episode-list/episode-list';
+import { LoginPage } from '../pages/login/login';
 
-// Components
-
-
+// Providers
 import { Database } from '../providers/database';
 import { MazeTvApi } from '../providers/maze-tv-api';
+import { Settings } from '../providers/settings';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { MazeTvApi } from '../providers/maze-tv-api';
     TabsPage,
     TvShowsPage,
     SeasonListPage,
-    EpisodeListPage
+    EpisodeListPage,
+    LoginPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -42,7 +43,8 @@ import { MazeTvApi } from '../providers/maze-tv-api';
     TabsPage,
     TvShowsPage,
     SeasonListPage,
-    EpisodeListPage
+    EpisodeListPage,
+    LoginPage
   ],
   providers: [
     {
@@ -50,7 +52,8 @@ import { MazeTvApi } from '../providers/maze-tv-api';
       useClass: IonicErrorHandler
     },
     Database,
-    MazeTvApi
+    MazeTvApi,
+    Settings
   ]
 })
 export class AppModule { }

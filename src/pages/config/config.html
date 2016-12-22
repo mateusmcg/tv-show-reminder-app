@@ -29,6 +29,13 @@
 			<ion-toggle item-right></ion-toggle>
 		</ion-item>
 
+		<ion-item>
+			<ion-label>Theme</ion-label>
+			<ion-select [(ngModel)]="selectedTheme" title="Choose a theme" (ionChange)="applyTheme(selectedTheme)">
+				<ion-option *ngFor='let theme of availableThemes' [value]="theme.value">{{theme.name}}</ion-option>
+			</ion-select>
+		</ion-item>
+
 		<button ion-item>
       <ion-icon name="log-out" item-left color="danger"></ion-icon>
       <ion-label color="danger">Logout</ion-label>
