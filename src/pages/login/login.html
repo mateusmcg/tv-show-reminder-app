@@ -5,15 +5,40 @@
   Ionic pages and navigation.
 -->
 
+<div class="background"></div>
+
 <ion-content>
   <div id="loginPage" padding>
     <ion-grid>
-      <ion-row class="login-buttons">
+      <ion-row center wrap>
         <ion-col>
-          <button ion-button (click)="openLoginCard()" outline large>Sign In</button>
+          <!--<h2 class="logo">TV Show Reminder</h2>-->
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="showLogin && !showSignUp">
+        <ion-col class="login-form">
+              <ion-input type="email" placeholder="Email" [(ngModel)]="login.email" name="email"></ion-input>
+              <ion-input type="password" placeholder="Password" [(ngModel)]="login.password" name="password"></ion-input>
+              <button ion-button block color="light" (click)="auth()">Sign In</button>
+              <button ion-button block clear color="light" class="btn-back-border" (click)="back()">Back</button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="showSignUp && !showLogin">
+        <ion-col class="signup-form">
+              <ion-input type="text" placeholder="Name" [(ngModel)]="signup.name"></ion-input>
+              <ion-input type="email" placeholder="Email" [(ngModel)]="signup.email"></ion-input>
+              <ion-input type="password" placeholder="Password" [(ngModel)]="signup.password"></ion-input>
+              <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="signup.confirmpassword"></ion-input>
+              <button ion-button block color="secondary" (click)="register()">Sign Up</button>
+              <button ion-button block clear color="light" class="btn-back-border" (click)="back()">Back</button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="login-buttons" center wrap *ngIf="!showSignUp && ! showLogin">
+        <ion-col>
+          <button ion-button (click)="openLoginForm()" class="btn-shadow" color="light" large>Sign In</button>
         </ion-col>
         <ion-col>
-          <button ion-button (click)="openLoginCard()" outline color="danger" large>Sign Up</button>
+          <button ion-button (click)="openSignUpForm()" class="btn-shadow" color="secondary" large>Sign Up</button>
         </ion-col>
       </ion-row>
     </ion-grid>

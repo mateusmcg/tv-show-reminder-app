@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -16,7 +17,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage
+    LoginPage,
+    HomePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -25,7 +27,8 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage
+    LoginPage,
+    HomePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

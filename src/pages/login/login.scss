@@ -1,11 +1,53 @@
 #loginPage{
-    background-image: url('../assets/images/login-background2.jpg');
+    z-index: 9999;
+}
+
+.background{
+    background-image: url('../assets/images/login-background6.jpg');
     background-size: cover;
     width: 100%;
     height: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+
+    z-index: 1;
 }
 
 .login-buttons{
-    position: aboslute;
+    position: absolute;
     bottom: 20px;
+}
+
+.logo{
+    color: white;
+    text-align: center;
+}
+
+.login-form{
+    // border: 1px solid white;
+    margin-top: 50px;
+}
+
+.login-form input{
+    height: 20px;
+    color: white;
+    font-size: 15px;
+}
+
+.btn-back-border{
+    border: 1px white solid;
+}
+
+.signup-form {
+    margin-top: 50px;    
+}
+
+.signup-form input{
+    height: 20px;
+    color: white;
+    font-size: 15px;
 }
